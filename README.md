@@ -67,9 +67,9 @@ import Storage from 'vue-lsp';
 import App from './App.vue'
 const app = createApp(App)
 
-app.use(VueStorage, {
+app.use(Storage, {
     namespace: 'vuejs__', // key prefix
-    name: 'ls', // name variable Vue.[ls] or this.[$ls],
+    name: 'ls', // name variable [ls] or [$ls],
     storage: 'local', // storage name session, local, memory
   }
 )
