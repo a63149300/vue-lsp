@@ -1,0 +1,27 @@
+{
+  "name": "vue-lsp",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build-lib": "vite build -c vite.lib.config.js",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.6.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/zhangyeping/vue-lsp"
+  },
+  "author": "前端爱码士",
+  "license": "MIT",
+  "main": "./dist/vue-lsp.umd.js",
+  "module": "./dist/vue-lsp.es.js",
+  "files": ["dist"],
+  "exports": {
+    ".": {
+      "import": "./dist/vue-lsp.es.js",
+      "require": "./dist/vue-lsp.umd.js"
+    }
+  }
+}
