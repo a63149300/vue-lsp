@@ -1,8 +1,7 @@
 /* eslint class-methods-use-this: off */
+import Cookies from 'js-cookie'
 
-let ls = {};
-
-class MemoryStorageInterface {
+class CookieStorageInterface {
   constructor() {
     Object.defineProperty(this, 'length', {
       /**
@@ -11,7 +10,7 @@ class MemoryStorageInterface {
        * @return {number}
        */
       get() {
-        return Object.keys(ls).length;
+        return document.cookie ? document.cookie.split('; ').length : 0;
       },
     });
   }
@@ -23,7 +22,7 @@ class MemoryStorageInterface {
    * @returns {*}
    */
   getItem(name) {
-    return name in ls ? ls[name] : null;
+    return Cookies.get(name);
   }
 
   /**
@@ -34,7 +33,7 @@ class MemoryStorageInterface {
    * @returns {boolean}
    */
   setItem(name, value) {
-    ls[name] = value;
+    Cookies.set(name, value);
 
     return true;
   }
@@ -46,12 +45,10 @@ class MemoryStorageInterface {
    * @returns {boolean}
    */
   removeItem(name) {
-    const found = name in ls;
-
-    if (found) {
-      return delete ls[name];
+    if (Cookies.get(name)) {
+      Cookies.remove(name);
+      return true
     }
-
     return false;
   }
 
@@ -62,12 +59,15 @@ class MemoryStorageInterface {
    * @returns {*}
    */
   key(index) {
-    const keys = Object.keys(ls);
-
-    return typeof keys[index] !== 'undefined' ? keys[index] : null;
+    let cookies = document.cookie ? document.cookie.split('; ') : [];
+    let keys = [];
+    for (let i = 0; i < cookies.length; i++) {
+      keys.push(cookies[i].split('=')[0])
+    }
+    return keys[index]
   }
 }
 
-const MemoryStorage = new MemoryStorageInterface();
+const CookieStorage = new CookieStorageInterface();
 
-export { MemoryStorage };
+export { CookieStorage };

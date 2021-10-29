@@ -1,4 +1,4 @@
-import { MemoryStorage, WebStorage } from './storage';
+import { MemoryStorage, WebStorage, CookieStorage } from './storage';
 
 // eslint-disable-next-line
 const _global = (typeof window !== 'undefined' ? window : global || {});
@@ -23,7 +23,7 @@ const VueStorage = {
       name: options.name || '$ls',
     };
 
-    if (_options.storage && ['memory', 'local', 'session'].indexOf(_options.storage) === -1) {
+    if (_options.storage && ['memory', 'local', 'session', 'cookie'].indexOf(_options.storage) === -1) {
       throw new Error(`vue-lsp: Storage "${_options.storage}" is not supported`);
     }
 
@@ -43,6 +43,11 @@ const VueStorage = {
           : null
         ;
         break;
+
+      case 'cookie':
+        store = CookieStorage
+        break;
+
       case 'memory':
         store = MemoryStorage;
         break;

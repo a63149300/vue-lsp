@@ -1,6 +1,6 @@
 {
   "name": "vue-lsp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "dev": "vite",
     "build-lib": "vite build -c vite.lib.config.js",
@@ -17,11 +17,16 @@
   "license": "MIT",
   "main": "./dist/vue-lsp.umd.js",
   "module": "./dist/vue-lsp.es.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "import": "./dist/vue-lsp.es.js",
       "require": "./dist/vue-lsp.umd.js"
     }
+  },
+  "dependencies": {
+    "js-cookie": "^3.0.1"
   }
 }
