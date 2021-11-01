@@ -1,7 +1,7 @@
 
 # vue-lsp
 
-Vue plugin for work with local storage, session storage and memory storage from Vue context，Inspired by [vue-ls](https://github.com/RobinCK/vue-ls)
+Vue 2.x and 3.x plugin for work with local storage, session storage and memory storage from Vue context，Inspired by [vue-ls](https://github.com/RobinCK/vue-ls)
 
 ## Vue version support
 
