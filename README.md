@@ -80,21 +80,21 @@ export default {
   components: {},
   setup() {
     const instance = getCurrentInstance()
-    const { proxy } = instance.appContext.config.globalProperties
-    proxy.ls.set('foo', 'boo');
+    const { ls } = instance.appContext.config.globalProperties
+    ls.set('foo', 'boo');
     // Set expire for item
-    proxy.ls.set('foo', 'boo', 60 * 60 * 1000); //expiry 1 hour
-    proxy.ls.get('foo');
-    proxy.ls.get('boo', 10); //if not set boo returned default 10
+    ls.set('foo', 'boo', 60 * 60 * 1000); //expiry 1 hour
+    ls.get('foo');
+    ls.get('boo', 10); //if not set boo returned default 10
     
     let callback = (val, oldVal, uri) => {
       console.log('localStorage change', val);
     } 
     
-    proxy.ls.on('foo', callback) //watch change foo key and triggered callback
-    proxy.ls.off('foo', callback) //unwatch
+    ls.on('foo', callback) //watch change foo key and triggered callback
+    ls.off('foo', callback) //unwatch
     
-    proxy.ls.remove('foo');
+    ls.remove('foo');
     return {}
   },
 }
